@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { ArrowUpRight, ChevronRight, Menu, Search, X } from 'lucide-react';
 import { getPhilosopher, getTradition, philosophers, questions, traditions } from './data';
+import ArenaPage from './arena/ArenaPage.jsx';
 import './styles.css';
 
 function useReadingLog() {
@@ -34,6 +35,7 @@ function Layout({ children }) {
         <NavLink to="/traditions">思想传统</NavLink>
         <NavLink to="/philosophers">哲学家</NavLink>
         <NavLink to="/questions">核心问题</NavLink>
+        <NavLink to="/arena">思想竞技场</NavLink>
         <span className="nav-rule" />
         <span className="archive-status"><span className="status-dot" />正在开放 · 24 典藏</span>
       </nav>
@@ -45,6 +47,10 @@ function Layout({ children }) {
 
 function SectionHeading({ kicker, title, children }) { return <div className="section-heading"><div><span className="kicker">{kicker}</span><h2>{title}</h2></div>{children}</div>; }
 
+function ArenaCta() {
+  return <section className="arena-cta section-pad"><div><span className="kicker">INTERACTIVE DEBATE ENGINE</span><h2>让思想流派<br /><em>进入竞技场。</em></h2><p>围绕同一个问题，动态匹配两个流派的本地论证；在关键回合选择立场，并生成一张包含主张、反驳与介入位置的关系图。</p><Link className="arena-cta-link" to="/arena">进入哲学思想竞技场 <ArrowUpRight size={16} /></Link></div></section>;
+}
+
 function Home() {
   const { add } = useReadingLog();
   return <main>
@@ -54,6 +60,8 @@ function Home() {
     </section>
 
     <section className="question-band section-pad"><SectionHeading kicker="THE WAY IN" title="从一个问题开始"><span className="heading-note">点击进入一条思想路径</span></SectionHeading><div className="question-grid">{questions.map((q) => <Link key={q.id} to={q.route} className="question-item" onClick={() => add(`question:${q.id}`)} style={{ '--accent': q.accent }}><span className="question-number">{q.number}</span><div><h3>{q.title}</h3><p>{q.description}</p><span className="mini-link">探索这条路径 <ChevronRight size={14} /></span></div></Link>)}</div></section>
+
+    <ArenaCta />
 
     <section className="timeline-band section-pad"><SectionHeading kicker="A SHORT HISTORY" title="思想的时间线"><Link className="text-link" to="/traditions">查看全部传统 <ArrowUpRight size={16} /></Link></SectionHeading><div className="timeline">{traditions.map((tradition, index) => <Link to={`/tradition/${tradition.id}`} key={tradition.id} className="timeline-entry" onClick={() => add(`tradition:${tradition.id}`)}><div className="timeline-year">{index === 0 ? '— 600' : tradition.id === 'modern' ? '1600' : tradition.id === 'german-idealism' ? '1780' : '1840'}</div><div className="timeline-line"><span className="timeline-dot" style={{ background: tradition.color }} /></div><div className="timeline-content"><span className="kicker">{tradition.eyebrow}</span><h3>{tradition.name}</h3><p>{tradition.summary}</p></div></Link>)}</div></section>
 
@@ -75,10 +83,10 @@ function TraditionDetail() { const { id } = useParams(); const tradition = getTr
 
 function PhilosopherDetail() { const { id } = useParams(); const person = getPhilosopher(id); const { add } = useReadingLog(); useEffect(() => { if (person) add(`philosopher:${person.id}`); }, [person?.id]); if (!person) return <NotFound />; return <main className="detail-main"><section className="person-hero section-pad"><div className="person-portrait portrait-placeholder" data-initial={person.name.slice(0, 1)}><span>{person.latin}</span></div><div className="person-copy"><span className="kicker">{person.tradition} / {person.years}</span><h1>{person.name}</h1><p className="person-quote">“{person.quote}”</p><p>{person.intro}</p><div className="tag-row">{person.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></section><section className="reading-note section-pad"><span className="kicker">A NOTE FOR YOUR READING</span><h2>先不要急着记住他的答案。</h2><p>试着带着一个自己的问题离开。思想真正开始的时刻，往往发生在书页合上之后。</p><Link className="text-link" to="/questions">继续探索问题 <ArrowUpRight size={16} /></Link></section></main>; }
 
-function QuestionDetail() { const { id } = useParams(); const question = questions.find((q) => q.id === id); if (!question) return <NotFound />; const relevant = philosophers.filter((p) => question.thinkers.includes(p.name)); return <main className="question-detail section-pad" style={{ '--accent': question.accent }}><Link className="back-link" to="/questions"><ChevronRight size={16} style={{ transform: 'rotate(180deg)' }} />返回问题索引</Link><div className="question-detail-head"><span className="question-number">{question.number}</span><h1>{question.title}</h1><p>{question.description}</p></div><div className="question-essay"><p className="dropcap">哲学从未只发生在书房。每一个时代都在重新发明这个问题，而每一个人也都需要在自己的生活里重新回答它。</p><p>沿着下方的人物线索阅读，你会看到不同的词语如何彼此碰撞：灵魂与身体，经验与理性，选择与责任。它们不提供一条笔直的道路，只让我们看见岔路口。</p></div><div className="question-thinkers"><span className="kicker">THINKERS TO FOLLOW</span><div>{relevant.map((person) => <Link key={person.id} to={`/philosopher/${person.id}`} className="thinker-chip"><span>{person.name}</span><ArrowUpRight size={15} /></Link>)}</div></div></main>; }
+function QuestionDetail() { const { id } = useParams(); const question = questions.find((q) => q.id === id); if (!question) return <NotFound />; const relevant = philosophers.filter((p) => question.thinkers.includes(p.name)); return <main className="question-detail section-pad" style={{ '--accent': question.accent }}><Link className="back-link" to="/questions"><ChevronRight size={16} style={{ transform: 'rotate(180deg)' }} />返回问题索引</Link><div className="question-detail-head"><span className="question-number">{question.number}</span><h1>{question.title}</h1><p>{question.description}</p>{['knowledge', 'life', 'moral'].includes(question.id) && <Link className="arena-inline-link" to={`/arena/${question.id}`}>在思想竞技场中展开交锋 <ArrowUpRight size={15} /></Link>}</div><div className="question-essay"><p className="dropcap">哲学从未只发生在书房。每一个时代都在重新发明这个问题，而每一个人也都需要在自己的生活里重新回答它。</p><p>沿着下方的人物线索阅读，你会看到不同的词语如何彼此碰撞：灵魂与身体，经验与理性，选择与责任。它们不提供一条笔直的道路，只让我们看见岔路口。</p></div><div className="question-thinkers"><span className="kicker">THINKERS TO FOLLOW</span><div>{relevant.map((person) => <Link key={person.id} to={`/philosopher/${person.id}`} className="thinker-chip"><span>{person.name}</span><ArrowUpRight size={15} /></Link>)}</div></div></main>; }
 
 function NotFound() { return <main className="page-main section-pad"><PageIntro kicker="404" title="这页还在路上。" intro="返回档案馆，换一条路径继续。" /><Link className="text-link" to="/">回到首页 <ArrowUpRight size={16} /></Link></main>; }
 
-function App() { return <Layout><Routes><Route path="/" element={<Home />} /><Route path="/traditions" element={<Traditions />} /><Route path="/philosophers" element={<Philosophers />} /><Route path="/questions" element={<Questions />} /><Route path="/tradition/:id" element={<TraditionDetail />} /><Route path="/philosopher/:id" element={<PhilosopherDetail />} /><Route path="/question/:id" element={<QuestionDetail />} /><Route path="*" element={<NotFound />} /></Routes></Layout>; }
+function App() { return <Layout><Routes><Route path="/" element={<Home />} /><Route path="/traditions" element={<Traditions />} /><Route path="/philosophers" element={<Philosophers />} /><Route path="/questions" element={<Questions />} /><Route path="/tradition/:id" element={<TraditionDetail />} /><Route path="/philosopher/:id" element={<PhilosopherDetail />} /><Route path="/question/:id" element={<QuestionDetail />} /><Route path="/arena" element={<ArenaPage />} /><Route path="/arena/:questionId" element={<ArenaPage />} /><Route path="*" element={<NotFound />} /></Routes></Layout>; }
 
 createRoot(document.getElementById('root')).render(<BrowserRouter><App /></BrowserRouter>);

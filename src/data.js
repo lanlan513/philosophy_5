@@ -65,6 +65,7 @@ export const questions = [
   { id: 'knowledge', number: '02', title: '知识从哪里来？', description: '经验可靠吗？理性能够抵达真理吗？', route: '/question/knowledge', accent: '#7d8663', thinkers: ['笛卡尔', '休谟', '康德'] },
   { id: 'real', number: '03', title: '什么是真实？', description: '在现象、理念与语言之间，世界以怎样的方式显现？', route: '/question/real', accent: '#bb9558', thinkers: ['柏拉图', '康德', '海德格尔'] },
   { id: 'life', number: '04', title: '怎样生活？', description: '一个值得过的人生，需要什么样的实践与勇气？', route: '/question/life', accent: '#536f7a', thinkers: ['亚里士多德', '萨特', '加缪'] },
+  { id: 'moral', number: '05', title: '行为在什么时候是道德的？', description: '道德来自法则、后果、品格，还是具体处境中的承担？', route: '/question/moral', accent: '#7f8bb5', thinkers: ['康德', '亚里士多德', '萨特'] },
 ];
 
 export function getPhilosopher(id) { return philosophers.find((item) => item.id === id); }
