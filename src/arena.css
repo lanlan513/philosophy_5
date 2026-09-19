@@ -1,0 +1,149 @@
+
+/* 哲学思想竞技场 */
+.arena-setup { background: #20211f; }
+.arena-intro { max-width: 900px; }
+.arena-intro h1 { font-size: clamp(54px, 7vw, 104px); }
+.arena-intro p { max-width: 720px; }
+.setup-block { border-top: 1px solid var(--line); margin-top: 58px; padding-top: 30px; }
+.setup-step { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .08em; }
+.arena-question-picker { display: grid; gap: 12px; grid-template-columns: repeat(4, 1fr); margin-top: 24px; }
+.arena-question-picker button,
+.side-choice-list button { background: none; border: 1px solid var(--line); color: var(--paper); cursor: pointer; text-align: left; transition: border-color .2s, background .2s, transform .2s; }
+.arena-question-picker button { min-height: 128px; padding: 18px; }
+.arena-question-picker button span { color: var(--accent, #c75b3d); display: block; font-family: 'DM Mono', monospace; font-size: 11px; }
+.arena-question-picker button strong { display: block; font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; margin-top: 15px; }
+.arena-question-picker button:hover,
+.arena-question-picker button.is-active { background: rgba(255,255,255,.05); border-color: var(--accent, #c75b3d); transform: translateY(-3px); }
+.setup-question-copy { color: #aaa79f; font-size: 14px; line-height: 1.8; margin-top: 18px; max-width: 680px; }
+.side-picker-grid { display: grid; gap: 28px; grid-template-columns: 1fr 1fr; margin-top: 24px; }
+.side-slot { border: 1px solid var(--line); padding: 18px; }
+.side-slot header span { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; }
+.side-choice-list { display: grid; gap: 10px; margin-top: 16px; }
+.side-choice-list button { padding: 16px 17px; position: relative; }
+.side-choice-list button::before { background: var(--side-color); content: ''; height: 100%; left: 0; opacity: .85; position: absolute; top: 0; width: 3px; }
+.side-choice-list button span { display: block; font-weight: 700; font-size: 15px; }
+.side-choice-list button small { color: var(--muted); display: block; font-size: 12px; margin-top: 5px; }
+.side-choice-list button.is-active { background: rgba(255,255,255,.06); border-color: var(--side-color); }
+.setup-start-row { align-items: center; border-top: 1px solid var(--line); display: flex; gap: 26px; justify-content: space-between; margin-top: 56px; padding: 32px 0 80px; }
+.setup-start-row p { color: #aaa79f; font-size: 13px; margin: 0; }
+.arena-button { align-items: center; background: #d9d3c8; border: 1px solid #d9d3c8; color: #20211f; display: inline-flex; font-size: 13px; font-weight: 700; gap: 8px; justify-content: center; min-height: 42px; padding: 10px 18px; transition: transform .2s, opacity .2s, background .2s; }
+.arena-button:hover { transform: translateY(-2px); }
+.arena-button.secondary { background: transparent; color: var(--paper); }
+.arena-button.is-disabled { cursor: not-allowed; opacity: .45; transform: none; }
+.text-button { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; margin-top: 22px; padding: 0; text-decoration: underline; }
+.arena-page { padding-bottom: 110px; padding-top: 45px; }
+.arena-hero { align-items: end; border-bottom: 1px solid var(--line); display: grid; gap: 30px; grid-template-columns: 1fr auto; padding-bottom: 38px; }
+.arena-hero h1 { font-size: clamp(56px, 8vw, 112px); margin: 15px 0; }
+.arena-hero p { color: #aaa79f; line-height: 1.8; margin: 0; max-width: 580px; }
+.machine-status { align-items: center; display: flex; gap: 10px; justify-content: flex-end; padding-bottom: 8px; }
+.machine-status span { border: 1px solid var(--line); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 9px; padding: 7px 9px; white-space: nowrap; }
+.machine-status span.is-current { background: #d9d3c8; border-color: #d9d3c8; color: #20211f; }
+.machine-status i { background: var(--line); height: 1px; width: 18px; }
+.arena-combatants { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; margin: 28px 0 60px; }
+.arena-combatants article { border: 1px solid var(--line); min-height: 172px; padding: 24px; position: relative; }
+.arena-combatants article::before { background: var(--side); content: ''; height: 3px; left: 0; position: absolute; top: 0; width: 100%; }
+.arena-combatants article.is-current { background: rgba(255,255,255,.045); border-color: var(--side); }
+.arena-combatants span { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; }
+.arena-combatants h2 { font-family: 'Instrument Serif', serif; font-size: 46px; font-weight: 400; margin: 10px 0 8px; }
+.arena-combatants p { color: #aaa79f; font-size: 13px; line-height: 1.7; margin: 0; }
+.arena-combatants b { bottom: 16px; color: var(--side); font-family: 'DM Mono', monospace; font-size: 9px; position: absolute; }
+.arena-transcript { display: grid; gap: 42px; }
+.debate-round { display: grid; grid-template-columns: 88px 1fr; }
+.round-marker { border-top: 1px solid var(--line); padding-top: 10px; }
+.round-marker span { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; }
+.round-lanes { display: grid; grid-template-columns: 1fr 190px 1fr; gap: 18px; }
+.is-current-round .round-lanes { padding-bottom: 18px; }
+.round-lane { display: flex; flex-direction: column; gap: 14px; min-height: 60px; }
+.round-lane-B { align-items: stretch; }
+.speech-card,
+.pending-card,
+.intervention-pending,
+.intervention-card { border: 1px solid var(--line); }
+.speech-card { background: #2a2b28; border-left: 3px solid var(--side); display: flex; flex-direction: column; padding: 18px; }
+.speech-card-B { border-left: 0; border-right: 3px solid var(--side); }
+.speech-card header { color: var(--muted); display: flex; font-family: 'DM Mono', monospace; font-size: 9px; justify-content: space-between; }
+.speech-card h3 { font-family: 'Instrument Serif', serif; font-size: 27px; font-weight: 400; margin: 12px 0 9px; }
+.speech-card p { color: #c5c1b8; font-size: 13px; line-height: 1.7; margin: 0; }
+.speech-card footer { border-top: 1px solid var(--line); color: #969289; font-size: 11px; line-height: 1.55; margin-top: 16px; padding-top: 10px; }
+.speech-card footer b { color: var(--side); }
+.pending-card { align-items: center; color: var(--muted); display: flex; font-size: 12px; justify-content: center; min-height: 92px; padding: 15px; text-align: center; }
+.round-lane-center { align-items: center; display: flex; justify-content: center; }
+.intervention-pending { align-items: center; color: #d9d3c8; display: flex; font-size: 12px; justify-content: center; line-height: 1.7; min-height: 90px; padding: 14px; text-align: center; width: 100%; }
+.intervention-card { background: #d9d3c8; color: #20211f; padding: 15px; text-align: center; width: 100%; }
+.intervention-card svg { margin: 0 auto 8px; }
+.intervention-card span { color: rgba(32,33,31,.65); display: block; font-family: 'DM Mono', monospace; font-size: 9px; }
+.intervention-card strong { display: block; font-size: 13px; margin-top: 8px; }
+.arena-controls { background: #2a2b28; border: 1px solid var(--line); margin: 58px 0; padding: 30px; text-align: center; }
+.arena-controls p { color: #b8b4ac; line-height: 1.8; margin: 0 auto 22px; max-width: 710px; }
+.support-buttons { align-items: center; display: flex; gap: 14px; justify-content: center; }
+.support-buttons .arena-button:first-child { border-color: var(--side); }
+.support-buttons .arena-button:last-child { border-color: var(--side); }
+.complete-panel { align-items: center; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.complete-panel p { margin: 0; text-align: left; }
+.revision-row { align-items: center; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin-top: 24px; padding-top: 22px; }
+.revision-row span { color: var(--muted); font-size: 12px; }
+.revision-row button { background: none; border: 1px solid var(--line); color: var(--paper); cursor: pointer; font-size: 12px; padding: 7px 10px; }
+.arena-history { border-top: 1px solid var(--line); display: grid; gap: 28px; grid-template-columns: .8fr 1.2fr; padding: 50px 0; }
+.arena-history h2 { font-family: 'Instrument Serif', serif; font-size: 43px; font-weight: 400; margin: 10px 0; }
+.arena-history p { color: #aaa79f; font-size: 13px; line-height: 1.7; }
+.arena-history ol { border-left: 1px solid var(--line); list-style: none; margin: 0; padding: 0 0 0 22px; }
+.arena-history li { display: grid; gap: 4px; grid-template-columns: 34px 1fr; margin-bottom: 16px; }
+.arena-history li span { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; }
+.arena-history li b { font-size: 13px; font-weight: 500; }
+.arena-history li small { color: var(--muted); grid-column: 2; }
+.arena-history li.is-archived b { text-decoration: line-through; color: var(--muted); }
+.abandoned-branches { border: 1px dashed var(--line); display: flex; flex-direction: column; gap: 8px; padding: 16px; }
+.abandoned-branches span,
+.abandoned-branches small { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; }
+.map-section { padding-top: 38px; }
+.map-heading h2 { font-family: 'Instrument Serif', serif; font-size: 56px; font-weight: 400; margin: 10px 0; }
+.map-heading p { color: #aaa79f; font-size: 13px; }
+.map-scroll { border: 1px solid var(--line); overflow-x: auto; padding-bottom: 12px; }
+.argument-map { min-width: 1200px; position: relative; }
+.map-lines { left: 0; pointer-events: none; position: absolute; top: 0; }
+.map-edge text { fill: #aaa79f; font-family: 'DM Mono', monospace; font-size: 10px; }
+.map-question-node,
+.map-node { position: absolute; }
+.map-question-node { background: #d9d3c8; color: #20211f; padding: 18px 22px; text-align: center; }
+.map-question-node span { color: rgba(32,33,31,.62); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .08em; }
+.map-question-node h3 { font-family: 'Instrument Serif', serif; font-size: 30px; font-weight: 400; margin: 8px 0 0; }
+.map-node { background: #2b2c29; border: 1px solid var(--line); padding: 16px 17px; }
+.map-argument-node { border-top: 3px solid var(--side); }
+.map-node-top { color: var(--muted); display: flex; font-family: 'DM Mono', monospace; font-size: 8px; justify-content: space-between; }
+.map-node h3 { font-family: 'Instrument Serif', serif; font-size: 23px; font-weight: 400; line-height: 1.15; margin: 10px 0 8px; }
+.map-node p { color: #b8b4ac; font-size: 11.5px; line-height: 1.55; margin: 0; }
+.map-node footer { align-items: center; bottom: 12px; display: flex; gap: 8px; justify-content: space-between; left: 17px; position: absolute; right: 17px; }
+.map-node footer span,
+.map-node footer b { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 8px; }
+.map-node footer b { color: var(--side); }
+.map-user-node { background: #d9d3c8; color: #20211f; }
+.map-user-node .map-node-kind { color: rgba(32,33,31,.62); }
+.map-user-node p { color: rgba(32,33,31,.75); }
+.question-detail .arena-entry { border: 1px solid rgba(237,232,223,.35); display: flex; gap: 10px; justify-content: space-between; margin: 22px auto 0; max-width: 690px; padding: 20px; transition: border-color .2s, background .2s; }
+.question-detail .arena-entry:hover { background: rgba(255,255,255,.04); border-color: var(--accent); }
+.question-detail .arena-entry strong { align-items: center; display: flex; font-size: 17px; gap: 9px; }
+.question-detail .arena-entry small { color: var(--muted); }
+
+@media (max-width: 900px) {
+  .arena-question-picker { grid-template-columns: repeat(2, 1fr); }
+  .side-picker-grid,
+  .arena-combatants,
+  .arena-history,
+  .arena-hero { grid-template-columns: 1fr; }
+  .machine-status { justify-content: flex-start; }
+  .debate-round { grid-template-columns: 1fr; }
+  .round-lanes { grid-template-columns: 1fr; }
+  .round-lane-center { order: -1; }
+  .support-buttons { flex-direction: column; }
+  .support-buttons .arena-button { width: 100%; }
+  .setup-start-row { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 760px) {
+  .arena-page { padding-top: 28px; }
+  .arena-hero h1 { font-size: 60px; }
+  .arena-combatants h2 { font-size: 38px; }
+  .arena-question-picker { grid-template-columns: 1fr; }
+  .map-heading h2 { font-size: 44px; }
+  .question-detail .arena-entry { align-items: flex-start; flex-direction: column; }
+}
